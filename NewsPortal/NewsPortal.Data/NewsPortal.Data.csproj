@@ -56,13 +56,9 @@
     <Compile Include="Enums\Role.cs" />
     <Compile Include="Interfaces\IArticleRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
-    <Compile Include="Migrations\201505231013302_InitialDB.cs" />
-    <Compile Include="Migrations\201505231013302_InitialDB.Designer.cs">
-      <DependentUpon>201505231013302_InitialDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505231053529_RequiredFields.cs" />
-    <Compile Include="Migrations\201505231053529_RequiredFields.Designer.cs">
-      <DependentUpon>201505231053529_RequiredFields.cs</DependentUpon>
+    <Compile Include="Migrations\201505231358550_InitialDB.cs" />
+    <Compile Include="Migrations\201505231358550_InitialDB.Designer.cs">
+      <DependentUpon>201505231358550_InitialDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,11 +71,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505231013302_InitialDB.resx">
-      <DependentUpon>201505231013302_InitialDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505231053529_RequiredFields.resx">
-      <DependentUpon>201505231053529_RequiredFields.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505231358550_InitialDB.resx">
+      <DependentUpon>201505231358550_InitialDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

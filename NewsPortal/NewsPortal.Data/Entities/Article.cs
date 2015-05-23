@@ -21,7 +21,5 @@ namespace NewsPortal.Data.Entities
         public User Publisher { get; set; }
 
         public int Likes { get; set; }
-        //public IList<Like> Likes { get; set; }
-
     }
 }

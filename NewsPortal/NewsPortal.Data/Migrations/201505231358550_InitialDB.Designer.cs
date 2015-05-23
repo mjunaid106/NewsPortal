@@ -7,13 +7,13 @@ namespace NewsPortal.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RequiredFields : IMigrationMetadata
+    public sealed partial class InitialDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RequiredFields));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "201505231053529_RequiredFields"; }
+            get { return "201505231358550_InitialDB"; }
         }
         
         string IMigrationMetadata.Source
