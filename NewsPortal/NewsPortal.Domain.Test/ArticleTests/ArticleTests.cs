@@ -51,9 +51,9 @@ namespace NewsPortal.Domain.Test.ArticleTests
 
             var articles = new List<Article>
             {
-                new Article { Id = 1, Title = "News Article 1", Author = _author, Body = "This is a sample body for News Article 1", ArticleType = ArticleType.News, PublishDate = DateTime.Now },
-                new Article { Id = 2, Title = "News Article 2", Author = _author, Body = "This is a sample body for News Article 2", ArticleType = ArticleType.News, PublishDate = DateTime.Now },
-                new Article { Id = 3, Title = "Technology Article 1", Author = _author, Body = "This is a sample body for Technology Article 1", ArticleType = ArticleType.Technology, PublishDate = DateTime.Now }
+                new Article { Id = 1, Title = "News Article 1", Author = _author, Body = "This is a sample body for News Article 1", ArticleType = ArticleType.News, PublishDate = DateTime.Now, Likes = 2},
+                new Article { Id = 2, Title = "News Article 2", Author = _author, Body = "This is a sample body for News Article 2", ArticleType = ArticleType.News, PublishDate = DateTime.Now , Likes = 48},
+                new Article { Id = 3, Title = "Technology Article 1", Author = _author, Body = "This is a sample body for Technology Article 1", ArticleType = ArticleType.Technology, PublishDate = DateTime.Now , Likes = 0}
             };
             IArticleRepository articleRepository = new FakeArticleRepository(articles);
             _articleManager = new ArticleManager(articleRepository);
@@ -122,6 +122,16 @@ namespace NewsPortal.Domain.Test.ArticleTests
             ArticlePublishResponse response = _articleManager.LikeArticle(_employee, article);
             Assert.AreEqual(false, response.Success);
             Assert.AreEqual(5, article.Likes);
+        }
+
+        [TestMethod]
+        public void ListTop10()
+        {
+            IList<Article> articles = _articleManager.ListTopArticles();
+            Assert.AreEqual(3, articles.Count);
+            Assert.AreEqual(2, articles[0].Id);
+            Assert.AreEqual(1, articles[1].Id);
+            Assert.AreEqual(3, articles[2].Id);
         }
     }
 }

@@ -46,17 +46,17 @@ namespace NewsPortal.Domain.Test.Fakes
 
         public Article Read(int id)
         {
-            throw new NotImplementedException();
+            return _articles.FirstOrDefault(a => a.Id == id);
         }
 
         public IList<Article> ReadAll()
         {
-            throw new NotImplementedException();
+            return _articles;
         }
 
         public IList<Article> ReadByType(ArticleType type)
         {
-            throw new NotImplementedException();
+            return _articles.Where(a => a.ArticleType == type).ToList();
         }
 
         public DataWriteResult Like(User user, Article article)

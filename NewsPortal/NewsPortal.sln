@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsPortal.Domain", "NewsPo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsPortal.Domain.Test", "NewsPortal.Domain.Test\NewsPortal.Domain.Test.csproj", "{79A4659B-39D7-435D-B3C4-B33994121257}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsPortal.Web", "NewsPortal.Web\NewsPortal.Web.csproj", "{A8CF38C2-5127-451C-B9F5-B3BDE1379A67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,16 @@ Global
 		{79A4659B-39D7-435D-B3C4-B33994121257}.Release|ARM.ActiveCfg = Release|Any CPU
 		{79A4659B-39D7-435D-B3C4-B33994121257}.Release|x64.ActiveCfg = Release|Any CPU
 		{79A4659B-39D7-435D-B3C4-B33994121257}.Release|x86.ActiveCfg = Release|Any CPU
+		{A8CF38C2-5127-451C-B9F5-B3BDE1379A67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8CF38C2-5127-451C-B9F5-B3BDE1379A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8CF38C2-5127-451C-B9F5-B3BDE1379A67}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A8CF38C2-5127-451C-B9F5-B3BDE1379A67}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A8CF38C2-5127-451C-B9F5-B3BDE1379A67}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A8CF38C2-5127-451C-B9F5-B3BDE1379A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8CF38C2-5127-451C-B9F5-B3BDE1379A67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8CF38C2-5127-451C-B9F5-B3BDE1379A67}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A8CF38C2-5127-451C-B9F5-B3BDE1379A67}.Release|x64.ActiveCfg = Release|Any CPU
+		{A8CF38C2-5127-451C-B9F5-B3BDE1379A67}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

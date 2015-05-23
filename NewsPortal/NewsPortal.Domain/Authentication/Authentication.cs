@@ -29,7 +29,7 @@ namespace NewsPortal.Domain.Authentication
             }
             else
             {
-                response = AuthenticationResponse.SuccessfulLogin();
+                response = AuthenticationResponse.SuccessfulLogin(user);
             }
             return response;
         }

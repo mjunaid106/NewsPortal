@@ -24,7 +24,7 @@ namespace NewsPortal.Data.Test.Integration.Repository
 
             _context = new NewsPortalContext();
             _articleRepository = new ArticleRepository(_context);
-            publisher = _context.Users.Skip(1).First(u => u.Role == Role.Publisher);
+            publisher = _context.Users.First(u => u.Role == Role.Publisher);
         }
 
         [TestMethod]

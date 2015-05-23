@@ -70,17 +70,17 @@ namespace NewsPortal.Data.Repository
 
         public Article Read(int id)
         {
-            return _context.Articles.FirstOrDefault(a => a.Id == id);
+            return _context.Articles.Include(a=>a.Author).Include(p=>p.Publisher).FirstOrDefault(a => a.Id == id);
         }
 
         public IList<Article> ReadAll()
         {
-            return _context.Articles.ToList();
+            return _context.Articles.Include(a => a.Author).Include(p => p.Publisher).ToList();
         }
 
         public IList<Article> ReadByType(ArticleType type)
         {
-            return _context.Articles.Where(a => a.ArticleType == type).ToList();
+            return _context.Articles.Include(a => a.Author).Include(p => p.Publisher).Where(a => a.ArticleType == type).ToList();
         }
 
         public DataWriteResult Like(User user, Article article)
@@ -89,10 +89,12 @@ namespace NewsPortal.Data.Repository
             {
                 if (user.Likes > 0)
                 {
-                    article.Likes += 1;
-                    user.Likes -= 1;
-                    _context.Articles.Attach(article);
+                    //var articleDb = _context.Articles.First(a => a.Id == article.Id);
+                    //var userDb = _context.Users.First(u => u.Id == user.Id);
+                    //articleDb.Likes += 1;
+                    //userDb.Likes -= 1;
                     _context.Users.Attach(user);
+                   // _context.Entry(user).Property(x => x.Password).IsModified = true;
                     _context.SaveChanges();
                     return DataWriteResult.SuccessResult();
                 }

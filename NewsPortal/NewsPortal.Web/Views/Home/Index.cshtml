@@ -1,0 +1,15 @@
+﻿@model IList<NewsPortal.Web.Models.ListArticlesViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@foreach (var article in Model)
+{
+    <div class="list-group">
+        <a href="Article/Index/@article.Id" class="list-group-item">
+            <h3 class="list-group-item-heading">@article.Title <span> - @article.Author</span> <span class="badge pull-right">@article.Likes likes</span></h3>
+            <p>by @article.Author | published on: @article.PublishDate.ToLongDateString()</p>
+            <p class="list-group-item-text">@article.Body ...</p>
+        </a>
+    </div>
+}

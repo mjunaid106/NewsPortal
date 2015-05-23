@@ -25,8 +25,8 @@ namespace NewsPortal.Data.Migrations
                 new User { Id = 2, Username = "Publisher2", Name = "Publisher 2", Password = "password", Role = Role.Publisher },
                 new User { Id = 3, Username = "Publisher3", Name = "Publisher 3", Password = "password", Role = Role.Publisher },
                 new User { Id = 4, Username = "Publisher4", Name = "Publisher 4", Password = "password", Role = Role.Publisher },
-                new User { Id = 5, Username = "Employee1", Name = "Employee 1", Password = "password", Role = Role.Employee },
-                new User { Id = 6, Username = "Employee2", Name = "Employee 2", Password = "password", Role = Role.Employee },
+                new User { Id = 5, Username = "Employee1", Name = "Employee 1", Password = "password", Role = Role.Employee, Likes = 10},
+                new User { Id = 6, Username = "Employee2", Name = "Employee 2", Password = "password", Role = Role.Employee, Likes = 1 },
                 new User { Id = 7, Username = "Employee3", Name = "Employee 3", Password = "password", Role = Role.Employee },
                 new User { Id = 8, Username = "Employee4", Name = "Employee 4", Password = "password", Role = Role.Employee }
                 );

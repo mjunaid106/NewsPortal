@@ -1,0 +1,35 @@
+﻿@using NewsPortal.Data.Entities
+@model NewsPortal.Web.Models.ArticleViewModels.ArticleDetailViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>
+        @Model.Title
+        @if ((Session["LoggedInUser"] == null) || ((User)Session["LoggedInUser"]).Likes == 0)
+        {
+            <span class="badge pull-right">@Model.Likes likes</span>
+        }
+        else
+        {
+            <a onclick="likeArticle(@Model.Id)" class="badge pull-right">@Model.Likes likes</a>
+        }
+    </h1>
+    <p>by @Model.Author.Name | published on: @Model.PublishDate.ToLongDateString()</p>
+</div>
+
+<p>@Model.Body</p>
+
+
+
+<script language="javascript" type="text/javascript">
+    function likeArticle(id) {
+        $.post("/Article/Like", { id: id })
+            .done(function (data) {
+                if (data == false) {
+                    alert("Error");
+                }
+            });
+    }
+</script>

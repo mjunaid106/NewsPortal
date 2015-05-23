@@ -34,5 +34,15 @@ namespace NewsPortal.Domain
             ArticlePublishResponse response = result.Success ? ResponseBase.SuccessResponse() : ResponseBase.FailureResponse();
             return response;
         }
+
+        public IList<Article> ListTopArticles()
+        {
+            return _articleRepository.ReadAll().OrderByDescending(l => l.Likes).Take(10).ToList();
+        }
+
+        public Article GetArticle(int id)
+        {
+            return _articleRepository.Read(id);
+        }
     }
 }
