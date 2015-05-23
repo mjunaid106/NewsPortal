@@ -18,7 +18,7 @@ namespace NewsPortal.Domain.Test.Fakes
             _articles = articles;
         }
 
-        public DataWriteResult Create(Article article)
+        public DataWriteResult Create(User publisher, Article article)
         {
             DataWriteResult response;
             if (article.Author == null)
@@ -34,12 +34,12 @@ namespace NewsPortal.Domain.Test.Fakes
             return response;
         }
 
-        public DataWriteResult Update(Article article)
+        public DataWriteResult Update(User publisher, Article article)
         {
             throw new NotImplementedException();
         }
 
-        public DataWriteResult Delete(Article article)
+        public DataWriteResult Delete(User publisher, Article article)
         {
             throw new NotImplementedException();
         }
@@ -57,6 +57,22 @@ namespace NewsPortal.Domain.Test.Fakes
         public IList<Article> ReadByType(ArticleType type)
         {
             throw new NotImplementedException();
+        }
+
+        public DataWriteResult Like(User user, Article article)
+        {
+            DataWriteResult response;
+            if (user.Likes > 0)
+            {
+                article.Likes += 1;
+                user.Likes -= 1;
+                response = DataWriteResult.SuccessResult();
+            }
+            else
+            {
+                response = DataWriteResult.FailureResult(new Exception("Insufficient likes remaining"));
+            }
+            return response;
         }
     }
 }

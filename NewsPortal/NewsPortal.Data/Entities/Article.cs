@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Security.AccessControl;
 using NewsPortal.Data.Enums;
 
 namespace NewsPortal.Data.Entities
@@ -12,8 +14,14 @@ namespace NewsPortal.Data.Entities
         [Required]
         public DateTime PublishDate { get; set; }
         [Required]
-        public User Author { get; set; }
+        public Author Author { get; set; }
         [Required]
         public ArticleType ArticleType { get; set; }
+        [Required]
+        public User Publisher { get; set; }
+
+        public int Likes { get; set; }
+        //public IList<Like> Likes { get; set; }
+
     }
 }

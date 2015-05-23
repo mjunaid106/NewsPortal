@@ -6,6 +6,7 @@ namespace NewsPortal.Data.Context
     public interface INewsPortalContext
     {
         IDbSet<User> Users { get; set; }
+        IDbSet<Author> Authors { get; set; }
         IDbSet<Article> Articles { get; set; }
 
         void SaveChanges();

@@ -7,11 +7,13 @@ namespace NewsPortal.Data.Interfaces
 {
     public interface IArticleRepository
     {
-        DataWriteResult Create(Article article);
-        DataWriteResult Update(Article article);
-        DataWriteResult Delete(Article article);
+        DataWriteResult Create(User publisher, Article article);
+        DataWriteResult Update(User publisher, Article article);
+        DataWriteResult Delete(User publisher, Article article);
         Article Read(int id);
         IList<Article> ReadAll();
         IList<Article> ReadByType(ArticleType type);
+
+        DataWriteResult Like(User user, Article article);
     }
 }

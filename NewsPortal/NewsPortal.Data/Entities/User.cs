@@ -13,5 +13,7 @@ namespace NewsPortal.Data.Entities
         public string Name { get; set; }
         [Required]
         public Role Role { get; set; }
+        [Required]
+        public int Likes { get; set; }
     }
 }

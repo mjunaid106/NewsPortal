@@ -49,6 +49,7 @@
     <Compile Include="Context\INewsPortalContext.cs" />
     <Compile Include="Context\NewsPortalContext.cs" />
     <Compile Include="Entities\Article.cs" />
+    <Compile Include="Entities\Author.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\ArticleType.cs" />

@@ -32,12 +32,21 @@ namespace NewsPortal.Data.Migrations
                 );
             context.SaveChanges();
 
-            User user = context.Users.First(u => u.Id == 1);
+            // Add Users
+            context.Authors.AddOrUpdate(
+                new Author { Id = 1, Name = "Author 1" },
+                new Author { Id = 2, Name = "Author 2" },
+                new Author { Id = 3, Name = "Author 3" }
+                );
+            context.SaveChanges();
+
+            User publisher = context.Users.First(u => u.Id == 1);
+            Author author = context.Authors.First(u => u.Id == 1);
             // Add Articles
             context.Articles.AddOrUpdate(
-                new Article { Id = 1, Title = "News Article 1", Author = user, Body = "This is a sample body for News Article 1", ArticleType = ArticleType.News, PublishDate = DateTime.Now },
-                new Article { Id = 2, Title = "News Article 2", Author = user, Body = "This is a sample body for News Article 2", ArticleType = ArticleType.News, PublishDate = DateTime.Now },
-                new Article { Id = 3, Title = "Technology Article 1", Author = user, Body = "This is a sample body for Technology Article 1", ArticleType = ArticleType.Technology, PublishDate = DateTime.Now }
+                new Article { Id = 1, Title = "News Article 1", Author = author, Publisher = publisher, Body = "This is a sample body for News Article 1", ArticleType = ArticleType.News, PublishDate = DateTime.Now },
+                new Article { Id = 2, Title = "News Article 2", Author = author, Publisher = publisher, Body = "This is a sample body for News Article 2", ArticleType = ArticleType.News, PublishDate = DateTime.Now },
+                new Article { Id = 3, Title = "Technology Article 1", Author = author, Publisher = publisher, Body = "This is a sample body for Technology Article 1", ArticleType = ArticleType.Technology, PublishDate = DateTime.Now }
                 );
             context.SaveChanges();
         }

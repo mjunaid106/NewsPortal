@@ -16,6 +16,7 @@ namespace NewsPortal.Data.Test.Integration.Repository
     {
         INewsPortalContext _context;
         private IArticleRepository _articleRepository;
+        private User publisher;
 
         [TestInitialize]
         public void Initilise()
@@ -23,6 +24,7 @@ namespace NewsPortal.Data.Test.Integration.Repository
 
             _context = new NewsPortalContext();
             _articleRepository = new ArticleRepository(_context);
+            publisher = _context.Users.Skip(1).First(u => u.Role == Role.Publisher);
         }
 
         [TestMethod]
@@ -31,7 +33,7 @@ namespace NewsPortal.Data.Test.Integration.Repository
             var article = new Article
             {
                 Title = "First Sports Article",
-                Author = _context.Users.First(),
+                Author = _context.Authors.First(),
                 Body = "Text for article",
                 PublishDate = DateTime.Now,
                 ArticleType = ArticleType.Sports
@@ -39,7 +41,7 @@ namespace NewsPortal.Data.Test.Integration.Repository
 
             using (new TransactionScope(TransactionScopeOption.Required, TimeSpan.MaxValue))
             {
-                DataWriteResult result = _articleRepository.Create(article);
+                DataWriteResult result = _articleRepository.Create(publisher, article);
                 Assert.AreEqual(true, result.Success);
                 Assert.IsNull(result.Exception);
             }
@@ -58,7 +60,7 @@ namespace NewsPortal.Data.Test.Integration.Repository
 
             using (new TransactionScope(TransactionScopeOption.Required, TimeSpan.MaxValue))
             {
-                DataWriteResult result = _articleRepository.Create(article);
+                DataWriteResult result = _articleRepository.Create(publisher, article);
                 Assert.AreEqual(false, result.Success);
                 Assert.IsNotNull(result.Exception);
             }
@@ -71,7 +73,7 @@ namespace NewsPortal.Data.Test.Integration.Repository
             {
                 Id = 2,
                 Title = "Changed to Sports Article",
-                Author = _context.Users.First(),
+                Author = _context.Authors.First(),
                 Body = "Now a sports article",
                 PublishDate = DateTime.Now,
                 ArticleType = ArticleType.Sports
@@ -79,7 +81,7 @@ namespace NewsPortal.Data.Test.Integration.Repository
 
             using (new TransactionScope(TransactionScopeOption.Required, TimeSpan.MaxValue))
             {
-                DataWriteResult result = _articleRepository.Update(article);
+                DataWriteResult result = _articleRepository.Update(publisher, article);
                 Assert.AreEqual(true, result.Success);
                 Assert.IsNull(result.Exception);
             }
@@ -94,7 +96,7 @@ namespace NewsPortal.Data.Test.Integration.Repository
             };
             using (new TransactionScope(TransactionScopeOption.Required, TimeSpan.MaxValue))
             {
-                DataWriteResult result = _articleRepository.Delete(article);
+                DataWriteResult result = _articleRepository.Delete(publisher, article);
                 Assert.AreEqual(true, result.Success);
                 Assert.IsNull(result.Exception);
             }

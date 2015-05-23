@@ -49,7 +49,7 @@
     <Compile Include="ArticleManager.cs" />
     <Compile Include="Authentication\Authentication.cs" />
     <Compile Include="Responses\ArticlePublishResponse.cs" />
-    <Compile Include="Interfaces\IArticle.cs" />
+    <Compile Include="Interfaces\IArticleManager.cs" />
     <Compile Include="Responses\AuthenticationResponse.cs" />
     <Compile Include="Enums\ResponseType.cs" />
     <Compile Include="Interfaces\IAuthentication.cs" />

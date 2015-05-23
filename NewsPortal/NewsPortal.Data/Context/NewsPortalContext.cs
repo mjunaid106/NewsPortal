@@ -6,6 +6,7 @@ namespace NewsPortal.Data.Context
     public class NewsPortalContext : DbContext, INewsPortalContext
     {
         public IDbSet<User> Users { get; set; }
+        public IDbSet<Author> Authors { get; set; }
         public IDbSet<Article> Articles { get; set; }
         
         public new void SaveChanges()

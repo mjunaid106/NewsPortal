@@ -5,6 +5,8 @@ namespace NewsPortal.Domain.Interfaces
 {
     public interface IArticleManager
     {
-        ArticlePublishResponse Publish(Article article);
+        ArticlePublishResponse Publish(User publisher, Article article);
+
+        ArticlePublishResponse LikeArticle(User user, Article article);
     }
 }
