@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NewsPortal.Data.Entities;
 using NewsPortal.Data.Enums;
@@ -9,13 +8,12 @@ using NewsPortal.Domain.Interfaces;
 using NewsPortal.Domain.Responses;
 using NewsPortal.Domain.Test.Fakes;
 
-namespace NewsPortal.Domain.Test.Authentication
+namespace NewsPortal.Domain.Test.AuthenticationTests
 {
     [TestClass]
     public class AuthenticationTests
     {
         private IAuthentication _authentication;
-
 
         [TestInitialize]
         public void Initilise()
@@ -26,7 +24,7 @@ namespace NewsPortal.Domain.Test.Authentication
                 new User { Id = 2, Username = "FakeUser2", Name = "Fake User 2", Password = "password", Role = Role.Employee }
             };
             IUserRepository userRepository = new FakeUserRepository(users);
-            _authentication = new Domain.Authentication.Authentication(userRepository);
+            _authentication = new Authentication.Authentication(userRepository);
         }
 
         [TestMethod]
@@ -34,7 +32,7 @@ namespace NewsPortal.Domain.Test.Authentication
         {
             AuthenticationResponse response = _authentication.IsUserAuthenticated("FakeUser1", "password");
             Assert.AreEqual(true, response.Success);
-            Assert.AreEqual(ResponseType.Success, response.ResponseType);
+            Assert.AreEqual(LoginResponseType.Success, response.ResponseType);
         }
 
         [TestMethod]
@@ -42,7 +40,7 @@ namespace NewsPortal.Domain.Test.Authentication
         {
             AuthenticationResponse response = _authentication.IsUserAuthenticated("FakeUser11", "password");
             Assert.AreEqual(false, response.Success);
-            Assert.AreEqual(ResponseType.InvalidUsername, response.ResponseType);
+            Assert.AreEqual(LoginResponseType.InvalidUsername, response.ResponseType);
         }
 
         [TestMethod]
@@ -50,7 +48,7 @@ namespace NewsPortal.Domain.Test.Authentication
         {
             AuthenticationResponse response = _authentication.IsUserAuthenticated("FakeUser1", "password1");
             Assert.AreEqual(false, response.Success);
-            Assert.AreEqual(ResponseType.InvalidPassword, response.ResponseType);
+            Assert.AreEqual(LoginResponseType.InvalidPassword, response.ResponseType);
         }
     }
 

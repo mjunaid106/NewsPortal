@@ -46,11 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleManager.cs" />
     <Compile Include="Authentication\Authentication.cs" />
+    <Compile Include="Responses\ArticlePublishResponse.cs" />
+    <Compile Include="Interfaces\IArticle.cs" />
     <Compile Include="Responses\AuthenticationResponse.cs" />
     <Compile Include="Enums\ResponseType.cs" />
     <Compile Include="Interfaces\IAuthentication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Responses\ResponseBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NewsPortal.Data\NewsPortal.Data.csproj">

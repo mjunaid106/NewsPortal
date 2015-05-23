@@ -1,6 +1,6 @@
 ﻿namespace NewsPortal.Domain.Enums
 {
-    public enum ResponseType
+    public enum LoginResponseType
     {
         Success,
         InvalidUsername,

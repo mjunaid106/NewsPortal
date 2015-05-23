@@ -21,11 +21,11 @@ namespace NewsPortal.Domain.Authentication
             User user = _userRepository.Read(username);
             if (user == null)
             {
-                response = AuthenticationResponse.InvalidLogin(ResponseType.InvalidUsername);
+                response = AuthenticationResponse.InvalidLogin(LoginResponseType.InvalidUsername);
             }
             else if (!user.Password.Equals(password))
             {
-                response = AuthenticationResponse.InvalidLogin(ResponseType.InvalidPassword);
+                response = AuthenticationResponse.InvalidLogin(LoginResponseType.InvalidPassword);
             }
             else
             {

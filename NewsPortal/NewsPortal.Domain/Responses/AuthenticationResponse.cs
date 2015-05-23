@@ -2,19 +2,18 @@
 
 namespace NewsPortal.Domain.Responses
 {
-    public class AuthenticationResponse
+    public class AuthenticationResponse: ResponseBase
     {
-        public bool Success { get; set; }
-        public ResponseType ResponseType { get; set; }
+        public LoginResponseType ResponseType { get; set; }
 
-        public static AuthenticationResponse InvalidLogin(ResponseType responseType)
+        public static AuthenticationResponse InvalidLogin(LoginResponseType responseType)
         {
             return new AuthenticationResponse { Success = false, ResponseType = responseType };
         }
 
         public static AuthenticationResponse SuccessfulLogin()
         {
-            return new AuthenticationResponse { Success = true, ResponseType = ResponseType.Success };
+            return new AuthenticationResponse { Success = true, ResponseType = LoginResponseType.Success };
         }
     }
 }
