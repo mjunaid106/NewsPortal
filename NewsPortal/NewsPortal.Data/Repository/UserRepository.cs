@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NewsPortal.Data.Context;
 using NewsPortal.Data.Interfaces;
@@ -22,7 +23,7 @@ namespace NewsPortal.Data.Repository
 
         public User Read(string username)
         {
-            return _context.Users.FirstOrDefault(u => u.Username == username);
+            return _context.Users.FirstOrDefault(u => u.Username.Equals(username, StringComparison.InvariantCultureIgnoreCase));
         }
     }
 }

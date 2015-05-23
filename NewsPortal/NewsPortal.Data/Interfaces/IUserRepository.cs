@@ -6,6 +6,6 @@ namespace NewsPortal.Data.Interfaces
     public interface IUserRepository
     {
         IList<User> ReadAll();
-        User Read(string user);
+        User Read(string username);
     }
 }
