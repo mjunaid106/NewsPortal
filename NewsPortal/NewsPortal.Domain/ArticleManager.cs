@@ -44,5 +44,15 @@ namespace NewsPortal.Domain
         {
             return _articleRepository.Read(id);
         }
+
+        public IList<Author> GetAllAuthors()
+        {
+            return _articleRepository.GetAllAuthors();
+        }
+
+        public IList<Article> GetArticleStats()
+        {
+            return _articleRepository.ReadAll().ToList();
+        }
     }
 }

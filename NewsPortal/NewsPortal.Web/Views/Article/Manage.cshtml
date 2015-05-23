@@ -1,0 +1,109 @@
+﻿@using NewsPortal.Data.Enums
+@model NewsPortal.Web.Models.NewArticleViewModel.ArticleViewModel
+<h2>
+    Article Dashboard
+</h2>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Chart</h3>
+    </div>
+    <div class="panel-body">
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <div id="chart_div">
+        </div>
+    </div>
+</div>
+<hr />
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">New Article</h3>
+    </div>
+    <div class="panel-body">
+        <section id="loginForm">
+            @using (Html.BeginForm("Add", "Article", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                <div class="input-group col-md-12 bottom-padding">
+                    @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
+                    @Html.TextBoxFor(m => m.Title, new { @class = "col-md-10 form-control", @placeholder = "Title" })
+                    @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                </div>
+                <div class="input-group col-md-12 bottom-padding">
+                    @Html.LabelFor(m => m.Author, new { @class = "col-md-2 control-label" })
+                    @Html.DropDownListFor(m => m.Author.Id, new SelectList(Model.Authors,
+                        "Id", "Name"), new { @class = "col-md-10 form-control" })
+                    @Html.ValidationMessageFor(m => m.Author, "", new { @class = "text-danger" })
+                </div>
+                <div class="input-group col-md-12 bottom-padding">
+                    @Html.LabelFor(m => m.Body, new { @class = "col-md-2 control-label" })
+                    @Html.TextAreaFor(m => m.Body, new { @class = "col-md-10 form-control", @placeholder = "Body" })
+                    @Html.ValidationMessageFor(m => m.Body, "", new { @class = "text-danger" })
+                </div>
+                <div class="input-group col-md-12 bottom-padding">
+                    @Html.LabelFor(m => m.ArticleType, new { @class = "col-md-2 control-label" })
+                    @Html.DropDownListFor(m => m.ArticleType, EnumHelper.GetSelectList(typeof(ArticleType)), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Author, "", new { @class = "text-danger" })
+                </div>
+                <div class="input-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Add" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>
+<script>
+    google.load('visualization', '1', { packages: ['corechart', 'bar'] });
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+        $.post('ChartData', {}, function (data) {
+            //var data = google.visualization.arrayToDataTable(d);
+            var tdata = new google.visualization.DataTable();
+
+            tdata.addColumn('string', 'Article');
+            tdata.addColumn('number', 'Likes');
+            for (var i = 0; i < data.length; i++) {
+                tdata.addRow([data[i].Title, data[i].Likes]);
+            }
+            var options = {
+                title: 'Likes for Articles',
+                hAxis: {
+                    title: 'Total Likes',
+                    minValue: 0
+                },
+                vAxis: {
+                    title: 'Articles'
+                }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+            chart.draw(tdata, options);
+        });
+    };
+    //function drawMultSeries() {
+    //    var data = google.visualization.arrayToDataTable([
+    //      ['City', '2010 Population', '2000 Population'],
+    //      ['New York City, NY', 8175000, 8008000],
+    //      ['Los Angeles, CA', 3792000, 3694000],
+    //      ['Chicago, IL', 2695000, 2896000],
+    //      ['Houston, TX', 2099000, 1953000],
+    //      ['Philadelphia, PA', 1526000, 1517000]
+    //    ]);
+
+    //    var options = {
+    //        title: 'Population of Largest U.S. Cities',
+    //        chartArea: { width: '50%' },
+    //        hAxis: {
+    //            title: 'Total Population',
+    //            minValue: 0
+    //        },
+    //        vAxis: {
+    //            title: 'City'
+    //        }
+    //    };
+
+    //    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+    //    chart.draw(data, options);
+    //}
+</script>

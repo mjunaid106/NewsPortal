@@ -28,7 +28,7 @@
         $.post("/Article/Like", { id: id })
             .done(function (data) {
                 if (data == false) {
-                    alert("Error");
+                    alert("Error liking");
                 }
             });
     }

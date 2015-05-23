@@ -15,5 +15,7 @@ namespace NewsPortal.Data.Interfaces
         IList<Article> ReadByType(ArticleType type);
 
         DataWriteResult Like(User user, Article article);
+
+        IList<Author> GetAllAuthors();
     }
 }

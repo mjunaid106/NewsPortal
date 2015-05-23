@@ -55,7 +55,7 @@ namespace NewsPortal.Domain.Test.ArticleTests
                 new Article { Id = 2, Title = "News Article 2", Author = _author, Body = "This is a sample body for News Article 2", ArticleType = ArticleType.News, PublishDate = DateTime.Now , Likes = 48},
                 new Article { Id = 3, Title = "Technology Article 1", Author = _author, Body = "This is a sample body for Technology Article 1", ArticleType = ArticleType.Technology, PublishDate = DateTime.Now , Likes = 0}
             };
-            IArticleRepository articleRepository = new FakeArticleRepository(articles);
+            IArticleRepository articleRepository = new FakeArticleRepository(articles, new List<Author>() { _author });
             _articleManager = new ArticleManager(articleRepository);
         }
 

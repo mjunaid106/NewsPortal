@@ -17,8 +17,9 @@ namespace NewsPortal.Web
             Mapper.CreateMap<Article, ArticleDetailViewModel>().ReverseMap();
             Mapper.CreateMap<User, PublisherViewModel>().ReverseMap();
             Mapper.CreateMap<Author, AuthorViewModel>().ReverseMap();
-
-
+            Mapper.CreateMap<Author, Models.NewArticleViewModel.AuthorViewModel>().ReverseMap();
+            Mapper.CreateMap<Article, Models.NewArticleViewModel.ArticleViewModel>().ReverseMap();
+            Mapper.CreateMap<Article, Models.NewArticleViewModel.ArticleStatsViewMode>().ReverseMap();
         }
     }
 }

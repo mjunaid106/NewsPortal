@@ -13,5 +13,9 @@ namespace NewsPortal.Domain.Interfaces
         IList<Article> ListTopArticles();
 
         Article GetArticle(int id);
+
+        IList<Author> GetAllAuthors();
+
+        IList<Article> GetArticleStats();
     }
 }

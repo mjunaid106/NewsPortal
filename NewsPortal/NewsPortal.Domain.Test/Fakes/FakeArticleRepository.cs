@@ -12,10 +12,12 @@ namespace NewsPortal.Domain.Test.Fakes
     public class FakeArticleRepository : IArticleRepository
     {
         private readonly IList<Article> _articles;
+        private readonly IList<Author> _authors;
 
-        public FakeArticleRepository(IList<Article> articles)
+        public FakeArticleRepository(IList<Article> articles, IList<Author> authors)
         {
             _articles = articles;
+            _authors = authors;
         }
 
         public DataWriteResult Create(User publisher, Article article)
@@ -73,6 +75,11 @@ namespace NewsPortal.Domain.Test.Fakes
                 response = DataWriteResult.FailureResult(new Exception("Insufficient likes remaining"));
             }
             return response;
+        }
+
+        public IList<Author> GetAllAuthors()
+        {
+            return _authors.ToList();
         }
     }
 }
