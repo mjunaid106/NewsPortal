@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using NewsPortal.Data.Context;
@@ -51,7 +52,8 @@ namespace NewsPortal.Data.Repository
         {
             try
             {
-                _context.Articles.Remove(article);
+                Article dbArticle = _context.Articles.FirstOrDefault(a => a.Id == article.Id);
+                _context.Articles.Remove(dbArticle);
                 _context.SaveChanges();
                 return DataWriteResult.SuccessResult();
             }

@@ -32,11 +32,12 @@ namespace NewsPortal.Data.Migrations
                 );
             context.SaveChanges();
 
+            User user = context.Users.First(u => u.Id == 1);
             // Add Articles
             context.Articles.AddOrUpdate(
-                new Article { Id = 1, Title = "News Article 1", Author = context.Users.First(u => u.Id == 1), Body = "This is a sample body for News Article 1", ArticleType = ArticleType.News, PublishDate = DateTime.Now },
-                new Article { Id = 2, Title = "News Article 2", Author = context.Users.First(u => u.Id == 1), Body = "This is a sample body for News Article 2", ArticleType = ArticleType.News, PublishDate = DateTime.Now },
-                new Article { Id = 3, Title = "Technology Article 1", Author = context.Users.First(u => u.Id == 1), Body = "This is a sample body for Technology Article 1", ArticleType = ArticleType.Technology, PublishDate = DateTime.Now }
+                new Article { Id = 1, Title = "News Article 1", Author = user, Body = "This is a sample body for News Article 1", ArticleType = ArticleType.News, PublishDate = DateTime.Now },
+                new Article { Id = 2, Title = "News Article 2", Author = user, Body = "This is a sample body for News Article 2", ArticleType = ArticleType.News, PublishDate = DateTime.Now },
+                new Article { Id = 3, Title = "Technology Article 1", Author = user, Body = "This is a sample body for Technology Article 1", ArticleType = ArticleType.Technology, PublishDate = DateTime.Now }
                 );
             context.SaveChanges();
         }

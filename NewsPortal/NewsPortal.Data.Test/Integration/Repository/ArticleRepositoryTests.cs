@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Transactions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NewsPortal.Data.Context;
 using NewsPortal.Data.Entities;
@@ -22,6 +23,81 @@ namespace NewsPortal.Data.Test.Integration.Repository
 
             _context = new NewsPortalContext();
             _articleRepository = new ArticleRepository(_context);
+        }
+
+        [TestMethod]
+        public void Create_Successful()
+        {
+            var article = new Article
+            {
+                Title = "First Sports Article",
+                Author = _context.Users.First(),
+                Body = "Text for article",
+                PublishDate = DateTime.Now,
+                ArticleType = ArticleType.Sports
+            };
+
+            using (new TransactionScope(TransactionScopeOption.Required, TimeSpan.MaxValue))
+            {
+                DataWriteResult result = _articleRepository.Create(article);
+                Assert.AreEqual(true, result.Success);
+                Assert.IsNull(result.Exception);
+            }
+        }
+
+        [TestMethod]
+        public void Create_Exception()
+        {
+            var article = new Article
+            {
+                Title = "First Sports Article",
+                Body = "Text for article",
+                PublishDate = DateTime.Now,
+                ArticleType = ArticleType.Sports
+            };
+
+            using (new TransactionScope(TransactionScopeOption.Required, TimeSpan.MaxValue))
+            {
+                DataWriteResult result = _articleRepository.Create(article);
+                Assert.AreEqual(false, result.Success);
+                Assert.IsNotNull(result.Exception);
+            }
+        }
+
+        [TestMethod]
+        public void Update_Successful()
+        {
+            var article = new Article
+            {
+                Id = 2,
+                Title = "Changed to Sports Article",
+                Author = _context.Users.First(),
+                Body = "Now a sports article",
+                PublishDate = DateTime.Now,
+                ArticleType = ArticleType.Sports
+            };
+
+            using (new TransactionScope(TransactionScopeOption.Required, TimeSpan.MaxValue))
+            {
+                DataWriteResult result = _articleRepository.Update(article);
+                Assert.AreEqual(true, result.Success);
+                Assert.IsNull(result.Exception);
+            }
+        }
+
+        [TestMethod]
+        public void Delete_Successful()
+        {
+            var article = new Article
+            {
+                Id = 3
+            };
+            using (new TransactionScope(TransactionScopeOption.Required, TimeSpan.MaxValue))
+            {
+                DataWriteResult result = _articleRepository.Delete(article);
+                Assert.AreEqual(true, result.Success);
+                Assert.IsNull(result.Exception);
+            }
         }
 
         [TestMethod]
@@ -56,22 +132,7 @@ namespace NewsPortal.Data.Test.Integration.Repository
         public void ReadByType_ArticleDoesNotExists_Successful()
         {
             var articles = _articleRepository.ReadByType(ArticleType.Sports);
-            Assert.IsNull(articles);
+            Assert.AreEqual(0, articles.Count);
         }
-
-        //[TestMethod]
-        //public void Create_Successful()
-        //{
-        //    var article = new Article
-        //    {
-        //        Title = "First Sports Article",
-        //        Author = _context.Users.First(),
-        //        Body = "Text for article",
-        //        PublishDate = DateTime.Now,
-        //        ArticleType = ArticleType.Sports
-        //    };
-        //    DataWriteResult result = _articleRepository.Create(article);
-        //    Assert.AreEqual(true, result.Success);
-        //}
     }
 }
