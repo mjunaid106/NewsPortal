@@ -20,7 +20,7 @@ namespace NewsPortal.Web.Api.Controllers
             _authentication = authentication;
         }
 
-        [HttpPost, Route("login/{username:alpha}/{password:alpha}")]
+        [HttpGet, Route("login/{username}/{password}")]
         public HttpResponseMessage Login(string username, string password)
         {
             AuthenticationResponse result = _authentication.IsUserAuthenticated(username, password);

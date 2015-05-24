@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
@@ -27,6 +29,13 @@ namespace NewsPortal.Web.Api.Controllers
             return response;
         }
 
+        [HttpGet, Route("get")]
+        public HttpResponseMessage GetTopArticles()
+        {
+            var articles = Mapper.Map<IList<Article>, IList<ArticleViewModel>>(_articleManager.ListTopArticles());
+            var response = Request.CreateResponse(HttpStatusCode.OK, articles);
+            return response;
+        }
         [HttpPut, Route("like/{articleId:int}")]
         public HttpResponseMessage Like(int userId, int articleId)
         {

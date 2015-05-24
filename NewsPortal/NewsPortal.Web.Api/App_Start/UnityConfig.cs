@@ -16,15 +16,15 @@ namespace NewsPortal.Web.Api
         {
             var container = new UnityContainer();
 
-            container.RegisterType<IAuthentication, Authentication>();
-            container.RegisterType<IArticleManager, ArticleManager>();
-            container.RegisterType<IArticleRepository, ArticleRepository>();
-            container.RegisterType<INewsPortalContext, NewsPortalContext>();
-            //container.RegisterTypes(
-            //    AllClasses.FromLoadedAssemblies(),
-            //    WithMappings.FromMatchingInterface,
-            //    WithName.Default,
-            //    WithLifetime.None);
+            //container.RegisterType<IAuthentication, Authentication>();
+            //container.RegisterType<IArticleManager, ArticleManager>();
+            //container.RegisterType<IArticleRepository, ArticleRepository>();
+            //container.RegisterType<INewsPortalContext, NewsPortalContext>();
+            container.RegisterTypes(
+                AllClasses.FromLoadedAssemblies(),
+                WithMappings.FromMatchingInterface,
+                WithName.Default,
+                WithLifetime.None);
             config.DependencyResolver = new UnityDependencyResolver(container);
             return container;
         }

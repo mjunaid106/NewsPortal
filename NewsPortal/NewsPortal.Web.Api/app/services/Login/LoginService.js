@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('uiApp')
+        .module('app')
         .factory('LoginService', LoginService);
 
     LoginService.$inject = ['$http'];
@@ -15,7 +15,7 @@
         return service;
 
         function login(username, password) {
-            var promise = $http.post('/api/login/', { 'username': username, 'password': password });
+            var promise = $http.get('/api/authentication/login/' + username + '/' + password );
             return promise;
         }
     }

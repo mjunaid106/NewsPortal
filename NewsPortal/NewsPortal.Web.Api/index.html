@@ -2,15 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/angular-route.js"></script>
     <script src="app/app.js"></script>
-    <script src="app/controllers/Login/login-controller.js"></script>
-    <script src="app/services/Login/login-service.js"></script>
+    <script src="app/controllers/Login/LoginController.js"></script>
+    <script src="app/controllers/Home/HomeController.js"></script>
+    <script src="app/services/Login/LoginService.js"></script>
+    <script src="app/services/Article/ArticleService.js"></script>
 </head>
-    <body ng-app="uiApp">
-        <div class="container">
-            <div ui-view></div>
-        </div>
-    </body>
+<body ng-app="app">
+    <div class="container">
+        <div ng-include="'app/partial/Nav/Navbar.html'"></div>
+        <div ng-view></div>
+    </div>
+</body>
 </html>
