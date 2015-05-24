@@ -5,19 +5,19 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$location'];
+    HomeController.$inject = ['$location', 'ArticleService'];
 
-    function HomeController($location) {
+    function HomeController($location, ArticleService) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'HomeController';
-        vm.listTopArticles = '';
+        vm.topArticles = '';
         activate();
 
         function activate() {
             ArticleService.listTopArticles().then(
                function onSuccess(response) {
-                   vm.listTopArticles = response.data;
+                   vm.topArticles = response.data;
                },
                function onFailure(response) {
                    alert(response);
