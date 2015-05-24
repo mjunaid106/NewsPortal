@@ -1,0 +1,26 @@
+﻿<div class="container">
+    <div class="row glyphicon-log-in">
+        <div class="col-md-5">
+            <div ng-controller="LoginController as loginVm">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Login
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Username" ng-model="loginVm.username" type="text" />
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Password" ng-model="loginVm.password" type="password" />
+                                </div>
+                            </fieldset>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Login" ng-click="loginVm.login()" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
-using Microsoft.AspNet.Identity;
 using NewsPortal.Data.Entities;
 using NewsPortal.Domain.Interfaces;
 using NewsPortal.Domain.Responses;
-using NewsPortal.Web.Models;
 using NewsPortal.Web.Models.ArticleViewModels;
 using NewsPortal.Web.Models.NewArticleViewModel;
 
@@ -41,7 +38,6 @@ namespace NewsPortal.Web.Controllers
         {
             var model = new ArticleViewModel();
             model.Authors = Mapper.Map<IList<Author>, IList<Models.NewArticleViewModel.AuthorViewModel>>(_articleManager.GetAllAuthors());
-            //model.ArticleStats = Mapper.Map<IList<Article>, IList<Models.NewArticleViewModel.ArticleStatsViewMode>>(_articleManager.GetArticleStats());
             return View(model);
         }
 
@@ -61,14 +57,6 @@ namespace NewsPortal.Web.Controllers
         [HttpPost]
         public JsonResult ChartData()
         {
-            //var articles = _articleManager.GetArticleStats();
-            //var data = new List<object>();
-            //data.Add(new[] { "Article", "Likes" });
-            //foreach (var article in articles)
-            //{
-            //    data.Add(new[] { article.Id, article.Likes });
-            //}
-            //return Json(data);
             var articleViewModel = Mapper.Map<IList<Article>, IList<ArticleStatsViewMode>>(_articleManager.GetArticleStats());
             return Json(articleViewModel);
         }

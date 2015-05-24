@@ -38,7 +38,6 @@ namespace NewsPortal.Web.App_Start
             // container.LoadConfiguration();
 
             // TODO: Register your types here
-            container.RegisterType<IAuthentication, Authentication>();
             container.RegisterTypes(
                 AllClasses.FromLoadedAssemblies(),
                 WithMappings.FromMatchingInterface,
