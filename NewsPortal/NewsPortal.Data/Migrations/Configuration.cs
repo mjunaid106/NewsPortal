@@ -8,13 +8,11 @@ namespace NewsPortal.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<NewsPortal.Data.Context.NewsPortalContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<NewsPortalContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            var context = new NewsPortalContext();
-            Seed(context);
         }
 
         protected override void Seed(NewsPortalContext context)
